@@ -4,3 +4,5 @@ node_modules
 minikube-linux-amd64
 skaffold
 skaffold.exe
+.DS_Store
+tickets/.DS_Store
