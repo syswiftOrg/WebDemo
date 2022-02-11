@@ -7,9 +7,21 @@ import Router from 'next/router';
 import axios from 'axios';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import Image from 'next/image';
-
+import Menu from '@mui/material/Menu';
+import * as React from 'react';
+import { ThemeProvider, createTheme  } from '@mui/material/styles';
+import ListItemButton from '@mui/material/ListItemButton';
 
 const Navbar =({currentUser})=>{
+    const [anchorEl, setAnchorEl] = React.useState(null);
+    const open = Boolean(anchorEl);
+    const handleClick = (event) => {
+      setAnchorEl(event.currentTarget);
+    };
+    const handleClose = () => {
+      setAnchorEl(null);
+    };
+  
 
     const signoutFunc = async () => {
         await axios.post('/api/auth/signout');
@@ -27,11 +39,36 @@ const Navbar =({currentUser})=>{
         }
     }
 
+    const danmakuClick = () => {
+        handleClose();
+        Router.push('/danmaku');
+        
+    }
+
         return (
         <AppBar position="static" style={{backgroundColor:"#001540"}}>
         <Toolbar>
-            <IconButton edge="start" color="inherit" aria-label="menu">
-            <MenuIcon />
+            <IconButton edge="start" color="inherit" aria-label="menu">   
+            <MenuIcon
+                    id="menuButton"
+                    aria-controls={open ? 'basic-menu' : undefined}
+                    aria-haspopup="true"
+                    aria-expanded={open ? 'true' : undefined}
+                    onClick={handleClick}/>
+            <Menu 
+                id="basic-menu"
+                anchorEl={anchorEl}
+                open={open}
+                onClose={handleClose}
+                MenuListProps={{
+                    'aria-labelledby': 'basic-button',
+                }}
+            >
+                <div className="menu">
+                    <ListItemButton onClick={danmakuClick}>bilibili Danmaku Graber</ListItemButton>
+                    <ListItemButton onClick={handleClose}>ticket master</ListItemButton>
+                </div>
+            </Menu>
             </IconButton>
             <Image 
             src="/logo.png"

@@ -6,10 +6,18 @@ import Head from 'next/head';
 
 const global = ({Component, pageProps, currentUser}) =>{
     return (
-    <div>
+    <div>     
         <Head>
             <title>Web Demo</title>
             <link rel="shortcut icon" href='/logo.png'/>
+            <link
+            rel="stylesheet"
+            href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
+            />
+            <link
+            rel="stylesheet"
+            href="https://fonts.googleapis.com/icon?family=Material+Icons"
+            />
         </Head>
         <Navbar currentUser={currentUser}/>
         <Component {...pageProps} />

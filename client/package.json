@@ -10,8 +10,12 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "material-ui-popup-state": "latest",
+    "@emotion/react": "latest",
+    "@emotion/styled": "latest",
     "@material-ui/core": "^4.11.4",
     "@material-ui/icons": "^4.11.2",
+    "@mui/material": "latest",
     "axios": "^0.21.1",
     "bootstrap": "^5.0.1",
     "next": "^10.2.3",
