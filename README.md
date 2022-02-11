@@ -17,9 +17,13 @@ install skaffold
 linux: curl -Lo skaffold https://storage.googleapis.com/skaffold/builds/latest/skaffold-linux-amd64 && \
 sudo install skaffold /usr/local/bin/
 
+windows: scoop bucket add extras
+scoop install skaffold
+
 install ingress-nginx
 windows: kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.0.4/deploy/static/provider/cloud/deploy.yaml
 linux: minikube addons enable ingress
 
 edit host file
+
 kubectl create secret generic jwt-secret --from-literal=JWT_KEY=syswift
