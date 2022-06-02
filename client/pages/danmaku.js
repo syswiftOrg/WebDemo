@@ -6,10 +6,12 @@ import VisibilityOff from '@material-ui/icons/VisibilityOff';
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 import axios from 'axios';
 import Router from 'next/router';
+import { spawn } from 'child_process';
 
 const danmaku = () => {
     const [values, setValues] = React.useState({
-        oid: '',
+        cid: 0,
+        response: '',
     });
 
     const theme = createMuiTheme({
@@ -29,13 +31,12 @@ const danmaku = () => {
 
     const onSubmit = async (event) => {
         event.preventDefault();
-        const oid = values.oid;
         
         try {
-            const response = await axios.get('http://comment.bilibili.com/'+{oid}+'.xml')
-            console.log(response);
+            //spawn('python', ['graber.py']);
         } catch (err) {
-            
+            values.errors = err;
+            console.log(values.errors);
         }
     }
     
@@ -45,11 +46,11 @@ const danmaku = () => {
 
             <div className="comp">
             <FormControl fullWidth variant="outlined">
-            <InputLabel htmlFor="oid">{'视频的oid/cid'}</InputLabel>
+            <InputLabel htmlFor="cid">{'视频的oid/cid'}</InputLabel>
             <OutlinedInput
-            id="vidOid"
+            id="vidcid"
             labelWidth={100}
-            onChange={handleChange('oid')}
+            onChange={handleChange('cid')}
             />
             </FormControl>
             </div>
@@ -61,6 +62,8 @@ const danmaku = () => {
                 </Button>
             </ThemeProvider>
             </div>
+            <p>
+            </p>
         </form>
     );
 };
